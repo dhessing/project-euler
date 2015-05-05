@@ -10,10 +10,16 @@
 ;;; By considering the terms in the Fibonacci sequence whose values do not
 ;;; exceed four million, find the sum of the even-valued terms.
 
-(defn fib []
-  (map first (iterate (fn [[a b]] [b (+ a b)]) [1 2])))
+(defn fibonacci-sequence []
+  (map first (iterate
+               (fn [[a b]] [b (+ a b)])
+               [1 2])))
 
 (defn problem-2 []
-  (apply + (filter even? (take-while #(< % 4000000) (fib)))))
+  (->> (fibonacci-sequence)
+       (take-while #(< % 4000000))
+       (filter even?)
+       (apply +)))
 
-(defn -main [] (println (problem-2)))
+(defn -main []
+  (println (problem-2)))

@@ -3,4 +3,4 @@
   (:require [project-euler.problem-2 :refer :all]))
 
 (deftest test-fib
-  (is (= '(1 2 3 5 8) (take 5 (fib)))))
+  (is (= '(1 2 3 5 8) (take 5 (fibonacci-sequence)))))

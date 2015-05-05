@@ -8,6 +8,10 @@
 ;;; Find the sum of all the multiples of 3 or 5 below 1000.
 
 (defn problem-1 [limit]
-  (apply + (set (concat (range 3 limit 3) (range 5 limit 5)))))
+  (->> (concat (range 3 limit 3)
+               (range 5 limit 5))
+       (set)
+       (apply +)))
 
-(defn -main [] (println (problem-1 1000)))
+(defn -main []
+  (println (problem-1 1000)))
