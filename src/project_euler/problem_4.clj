@@ -15,13 +15,16 @@
        (Integer/parseInt)
        (= number)))
 
-(defn palindrome-product [digits]
-  (let [upper (int (Math/pow 10 digits))
+(defn largest-palindrome-product [digits]
+  (let [upper (int (dec (Math/pow 10 digits)))
         n (range upper (/ upper 10) -1)]
-    (apply max (for [x n
-                     y n
-                     :let [result (* x y)]
-                     :when (is-palindrome? result)]
-                 result))))
+    (->> (for [x n
+               y n
+               :when (>= x y)]                              ; No doubles.
+           (* x y))
+         (sort)
+         (reverse)
+         (filter is-palindrome?)
+         (first))))
 
-(defn -main [] (palindrome-product 3))
+(defn -main [] (largest-palindrome-product 3))

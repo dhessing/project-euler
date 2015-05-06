@@ -7,4 +7,4 @@
   (is (false? (is-palindrome? 100))))
 
 (deftest test-palindrome-product
-  (is (= 9009 (palindrome-product 2))))
+  (is (= 9009 (largest-palindrome-product 2))))
