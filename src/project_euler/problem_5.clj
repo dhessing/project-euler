@@ -8,19 +8,20 @@
 ;;; What is the smallest positive number that is evenly divisible by all of the
 ;;; numbers from 1 to 20?
 
-(defn divisable-by [number number-range]
-  (every? zero? (map #(mod number %) number-range)))
+(defn divisable-by-all?
+  "Checks if n is divisable by all numbers in coll without remainder."
+  [n coll]
+  (every? zero? (map (partial mod n) coll)))
 
-(defn smallest-multiple [number]
-  (if (= number 1) 1
-                   (let [divisors (map inc (range number))
-                         last-number (smallest-multiple (dec number))
-                         possible-numbers (map (partial * last-number) divisors)]
-                     (first (filter #(divisable-by % divisors) possible-numbers)))))
+(defn smallest-multiple
+  "Cuts down computing time by using the fact that the new multiple is always a
+  factor of the previous smallest multiple"
+  ([x] (nth (smallest-multiple 1 1) (dec x)))
+  ([x prev]
+   (let [divisors (map inc (range x))
+         coll     (map (partial * prev) divisors)
+         smallest (first (filter #(divisable-by-all? % divisors) coll))]
+     (lazy-seq (cons smallest (smallest-multiple (inc x) smallest))))))
 
 (defn -main []
-  (println (smallest-multiple 20)))
-
-
-;(map smallest-multiple (range 10))
-;=> (1 1 2 6 12 60 60 420 840 2520)
+  (println (smallest-multiple (range 20))))
