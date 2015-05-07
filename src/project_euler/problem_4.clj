@@ -16,8 +16,8 @@
        (= number)))
 
 (defn largest-palindrome-product [digits]
-  (let [upper (int (dec (Math/pow 10 digits)))
-        n (range upper (/ upper 10) -1)]
+  (let [upper (int (Math/pow 10 digits))
+        n (range (/ upper 10) upper)]
     (->> (for [x n
                y n
                :when (>= x y)]                              ; No doubles.
