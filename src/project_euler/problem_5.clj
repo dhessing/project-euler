@@ -24,4 +24,4 @@
      (lazy-seq (cons smallest (smallest-multiple (inc x) smallest))))))
 
 (defn -main []
-  (println (smallest-multiple (range 20))))
+  (println (smallest-multiple 20)))
