@@ -3,8 +3,8 @@
   (:require [project-euler.problem-7 :refer :all]))
 
 (deftest test-is-prime?
-  (is (false? (is-prime? 4 [2 3])))
-  (is (true? (is-prime? 5 [2 3]))))
+  (is (false? (is-prime? 4)))
+  (is (true? (is-prime? 5))))
 
 (deftest test-primes
   (is (= (first (primes)) 2))
