@@ -7,17 +7,17 @@
 
 ;;; What is the 10 001st prime number?
 
-(declare primes)
+(declare is-prime?)
 
-(def prime-list (primes))
+(defn prime-seq []
+  (cons 2 (lazy-seq (filter is-prime? (iterate (partial + 2) 3)))))
+
+(def primes (prime-seq))
 
 (defn is-prime? [x]
-  (->> prime-list
+  (->> primes
        (take-while (partial >= (Math/sqrt x)))
        (map (partial mod x))
        (not-any? zero?)))
 
-(defn primes []
-  (cons 2 (lazy-seq (filter is-prime? (iterate (partial + 2) 3)))))
-
-(defn -main [] (nth (primes) 10000))
+(defn -main [] (nth (prime-seq) 10000))
