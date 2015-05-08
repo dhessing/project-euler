@@ -17,11 +17,7 @@
        (map (partial mod x))
        (not-any? zero?)))
 
-(defn primes
-  ([] (cons 2 (primes 3)))
-  ([x] (lazy-seq
-         (if (is-prime? x)
-           (cons x (primes (+ x 2)))
-           (primes (+ x 2))))))
+(defn primes []
+  (cons 2 (lazy-seq (filter is-prime? (iterate (partial + 2) 3)))))
 
 (defn -main [] (nth (primes) 10000))
