@@ -12,7 +12,6 @@
 
 (defn largest-product-in-series [n]
   (->> (str large-number)
-       (seq)
        (map #(Integer/parseInt (str %)))
        (partition-all n 1)
        (map #(apply * %))
