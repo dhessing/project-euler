@@ -7,12 +7,7 @@
 
 ;;; What is the 10 001st prime number?
 
-(declare is-prime?)
-
-(defn prime-seq []
-  (cons 2 (lazy-seq (filter is-prime? (iterate (partial + 2) 3)))))
-
-(def primes (prime-seq))
+(declare primes)
 
 (defn is-prime? [x]
   (->> primes
@@ -20,4 +15,8 @@
        (map (partial mod x))
        (not-any? zero?)))
 
-(defn -main [] (nth (prime-seq) 10000))
+;; Declares primes at top level scope to beat the garbage collector.
+;; We want all previous primes available for checking with is-prime?.
+(def primes (cons 2 (filter is-prime? (iterate (partial + 2) 3))))
+
+(defn -main [] (nth primes 10000))

@@ -7,6 +7,6 @@
   (is (true? (is-prime? 5))))
 
 (deftest test-primes
-  (is (= (first (prime-seq)) 2))
-  (is (= (second (prime-seq)) 3))
-  (is (= (nth (prime-seq) 5) 13)))
+  (is (= (first primes) 2))
+  (is (= (second primes) 3))
+  (is (= (nth primes 5) 13)))
