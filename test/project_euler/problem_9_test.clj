@@ -3,7 +3,7 @@
   (:require [project-euler.problem-9 :refer :all]))
 
 (deftest test-pythagorian-triplets-below
-  (is (= [3 4 5] (first (pythagorian-triplets-below 10)))))
+  (is (= [3 4 5] (first (pythagorian-triplets)))))
 
 (deftest test-special-pythagorian-triplet
   (is (= (* 3 4 5) (special-pythagorian-triplet (+ 3 4 5)))))

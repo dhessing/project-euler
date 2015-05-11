@@ -11,10 +11,10 @@
 ;;; There exists exactly one Pythagorean triplet for which a + b + c = 1000.
 ;;; Find the product abc.
 
-(defn pythagorian-triplets-below [x]
-  (for [n (range 1 x)
-        m (range 1 x)
-        :when (> m n)
+(defn pythagorian-triplets []
+  (for [m (drop 1 (range))
+        n (drop 1 (range))
+        :while (> m n)
         :when (odd? (- m n))
         :let [a (- (* m m) (* n n))
               b (* 2 n m)
@@ -22,7 +22,7 @@
     [a b c]))
 
 (defn special-pythagorian-triplet [x]
-  (->> (pythagorian-triplets-below x)
+  (->> (pythagorian-triplets)
        (filter #(= x (apply + %)))
        (first)
        (apply *)))
