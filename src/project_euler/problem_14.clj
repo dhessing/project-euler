@@ -3,17 +3,18 @@
 
 (ns project-euler.problem-14)
 
-(def collatz-seq-length
+(defn collatz-step [n]
+  (if (even? n) (/ n 2) (inc (* n 3))))
+
+(def collatz-chain-length
   (memoize
     (fn [n]
-      (if (< 1 n)
-        (inc (collatz-seq-length (if (even? n)
-                                   (/ n 2)
-                                   (inc (* n 3)))))
-        1))))
+      (if (= n 1)
+        1
+        (inc (collatz-chain-length (collatz-step n)))))))
 
 (defn longest-collatz-number [range]
-  (last (sort-by (partial collatz-seq-length) range)))
+  (last (sort-by (partial collatz-chain-length) range)))
 
 (defn -main []
-  (println (longest-collatz-number 1000000)))
+  (println (longest-collatz-number (range 1 1000000))))
