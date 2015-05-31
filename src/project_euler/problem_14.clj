@@ -13,8 +13,8 @@
         1
         (inc (collatz-chain-length (collatz-step n)))))))
 
-(defn longest-collatz-number [range]
-  (last (sort-by (partial collatz-chain-length) range)))
+(defn longest-collatz-number [coll]
+  (apply max-key collatz-chain-length coll))
 
 (defn -main []
   (println (longest-collatz-number (range 1 1000000))))
