@@ -3,5 +3,5 @@
   (:require [project-euler.problem-16 :refer :all]))
 
 (deftest test-number-explode
-  (is (= (number-explode 123) [1 2 3]))
-  (is (= (number-explode 100) [1 0 0])))
+  (is (= (digits 123) [1 2 3]))
+  (is (= (digits 100) [1 0 0])))
