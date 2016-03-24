@@ -1,7 +1,7 @@
 ;;;; Longest Collatz sequence
 ;;; https://projecteuler.net/problem=14
 
-(ns project-euler.problem-14)
+(ns project-euler.problem-014)
 
 (defn collatz-step [n]
   (if (even? n) (/ n 2) (inc (* n 3))))

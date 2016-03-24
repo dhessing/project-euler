@@ -4,11 +4,11 @@
 
 ;;; Find the sum of all the primes below two million.
 
-(ns project-euler.problem-10
-  (:require project-euler.problem-7))
+(ns project-euler.problem-010
+  (:require project-euler.problem-007))
 
 (defn sum-of-primes [n]
-  (->> (project-euler.problem-7/prime-seq)
+  (->> (project-euler.problem-007/prime-seq)
        (take-while (partial > n))
        (apply +)))
 

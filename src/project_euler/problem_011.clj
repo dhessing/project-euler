@@ -1,4 +1,4 @@
-(ns project-euler.problem-11)
+(ns project-euler.problem-011)
 ;;;; Largest product in a grid
 
 ;;; https://projecteuler.net/problem=11

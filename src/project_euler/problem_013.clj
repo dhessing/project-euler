@@ -1,7 +1,7 @@
 ;;;; Large sum
 ;;; https://projecteuler.net/problem=13
 
-(ns project-euler.problem-13)
+(ns project-euler.problem-013)
 
 (def numbers [37107287533902102798797998220837590246510135740250
               46376937677490009712648124896970078050417018260538

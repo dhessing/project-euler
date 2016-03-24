@@ -1,6 +1,6 @@
 (ns project-euler.problem-14-test
   (:require [clojure.test :refer :all])
-  (:require [project-euler.problem-14 :refer :all]))
+  (:require [project-euler.problem-014 :refer :all]))
 
 (deftest test-collatz-step
   (is (= (collatz-step 1) 4))

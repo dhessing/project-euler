@@ -1,4 +1,4 @@
-(ns project-euler.problem-17)
+(ns project-euler.problem-017)
 
 (defn number-letter-counts [n]
   (let [length (count (re-seq #"\w" (clojure.pprint/cl-format nil "~R" n)))]

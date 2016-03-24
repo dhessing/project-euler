@@ -1,4 +1,4 @@
-(ns project-euler.problem-18
+(ns project-euler.problem-018
   (:require [clojure.string :as str]))
 
 (def triangle-str

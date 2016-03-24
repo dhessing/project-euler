@@ -1,7 +1,7 @@
 ;;;; Highly divisible triangular number
 ;;; https://projecteuler.net/problem=12
 
-(ns project-euler.problem-12)
+(ns project-euler.problem-012)
 
 (defn triangle-numbers []
   (map first (iterate (fn [[x y]] [(+ x y) (inc y)]) [1 2])))

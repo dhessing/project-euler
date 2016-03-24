@@ -1,4 +1,4 @@
-(ns project-euler.problem-15
+(ns project-euler.problem-015
   (:require [clojure.math.combinatorics :as combo]))
 
 (defn -main []

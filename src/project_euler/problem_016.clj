@@ -1,4 +1,4 @@
-(ns project-euler.problem-16
+(ns project-euler.problem-016
   (:require [clojure.math.numeric-tower :as math]))
 
 (defn digits [n]
