@@ -1,10 +1,7 @@
 ;;;; Summation of primes
 
-;;; The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
-
-;;; Find the sum of all the primes below two million.
-
 (ns project-euler.problem-010
+  (:use clojure.test)
   (:require project-euler.problem-007))
 
 (defn sum-of-primes [n]
@@ -12,4 +9,20 @@
        (take-while (partial > n))
        (apply +)))
 
-(defn -main [] (sum-of-primes 2000000))
+(deftest test-sum-of-primes
+  (is (= 17 (sum-of-primes 10))))
+
+;;; Alternative solution
+
+(defn prime? [n]
+  (.isProbablePrime (BigInteger/valueOf n) 10))
+
+(defn sum-of-primes-alt [n]
+  (->> (range n)
+       (filter prime?)
+       (apply +)))
+
+(deftest test-sum-of-primes-alt
+  (is (= 17 (sum-of-primes-alt 10))))
+
+(defn solve [] (sum-of-primes 2e6))
