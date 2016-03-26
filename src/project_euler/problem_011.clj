@@ -1,7 +1,7 @@
-(ns project-euler.problem-011)
 ;;;; Largest product in a grid
 
-;;; https://projecteuler.net/problem=11
+(ns project-euler.problem-011
+  (:use clojure.test))
 
 (def grid [[ 8  2 22 97 38 15  0 40  0 75  4  5  7 78 52 12 50 77 91  8]
            [49 49 99 40 17 81 18 57 60 87 17 40 98 43 69 48  4 56 62  0]
@@ -24,15 +24,24 @@
            [20 73 35 29 78 31 90  1 74 31 49 71 48 86 81 16 23 57  5 54]
            [ 1 70 54 71 83 51 54 69 16 92 33 48 61 43 52  1 89 19 67 48]])
 
-(defn lines [x y]
-  (let [directions [(map vector (repeat 0) (range x (+ x 4))) ; right
-                    (map vector (range y (+ y 4)) (range x (+ x 4))) ; bottom right
-                    (map vector (range y (+ y 4)) (repeat 0)) ; bottom
-                    (map vector (range y (- y 4) -1) (range x (+ x 4))) ; top right
-                    ]]
-    (map (partial map #(get-in grid % 0)) directions)))
 
-(defn -main []
+(defn directions [x y]
+  [(map vector (repeat 0) (range x (+ x 4)))           ; right
+   (map vector (range y (+ y 4)) (range x (+ x 4)))    ; bottom right
+   (map vector (range y (+ y 4)) (repeat 0))           ; bottom
+   (map vector (range y (- y 4) -1) (range x (+ x 4))) ; top right
+   ])
+
+(defn lines [x y]
+  (map (partial map #(get-in grid % 0)) (directions x y)))
+
+(deftest test-directions
+  (is (= '([0 0] [0 1] [0 2] [0 3]) (first (directions 0 0)))))
+
+(deftest test-lines
+         (is (= '(8 2 22 97) (first (lines 0 0)))))
+
+(defn solve []
   (->> (for [x (range 20)
              y (range 20)]
          (map (partial apply *) (lines x y)))
