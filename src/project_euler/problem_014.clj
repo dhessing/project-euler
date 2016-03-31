@@ -1,7 +1,8 @@
 ;;;; Longest Collatz sequence
 ;;; https://projecteuler.net/problem=14
 
-(ns project-euler.problem-014)
+(ns project-euler.problem-014
+  (:use clojure.test))
 
 (defn collatz-step [n]
   (if (even? n) (/ n 2) (inc (* n 3))))
@@ -13,8 +14,27 @@
         1
         (inc (collatz-chain-length (collatz-step n)))))))
 
+(let [cache (atom {1 1})]
+  (defn collatz-chain-length-alt [n]
+    (loop [n n, k identity]
+      (letfn [(cache-add [length]
+                (swap! cache assoc n length) length)]
+        (if-let [length (@cache n)]
+          (k length)
+          (recur (collatz-step n)
+                 (comp k inc cache-add)))))))
+
 (defn longest-collatz-number [coll]
   (apply max-key collatz-chain-length coll))
 
-(defn -main []
-  (println (longest-collatz-number (range 1 1000000))))
+(deftest test-collatz-step
+  (is (= (collatz-step 1) 4))
+  (is (= (collatz-step 2) 1)))
+
+(deftest test-collatz-length-memo
+  (is (= (collatz-chain-length 13) 10)))
+
+(deftest test-longest-collatz-number
+  (is (= (longest-collatz-number (range 1 10)) 9)))
+
+(defn solve [] (longest-collatz-number (range 1 1e6)))
