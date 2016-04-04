@@ -8,8 +8,8 @@
 (defn to-digits [n]
   (->> (iterate #(quot % 10) n)
        (take-while pos?)
-       (map #(mod % 10))
-       (reverse)))
+       (mapv #(mod % 10))
+       (rseq)))
 
 (defn largest-product-in-series [n]
   (->> (to-digits large-number)
@@ -18,7 +18,7 @@
        (apply max)))
 
 (deftest test-to-digits
-  (is (= '(1 2 3) (to-digits 123))))
+  (is (= [1 2 3] (to-digits 123))))
 
 (deftest test-largest-product-in
   (is (= 5832 (largest-product-in-series 4))))

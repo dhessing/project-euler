@@ -1,8 +1,13 @@
 (ns project-euler.problem-016
-  (:require [clojure.math.numeric-tower :as math]))
+  (:use clojure.test)
+  (:require [project-euler.problem-008 :as problem-008]
+            [clojure.math.numeric-tower :as math]))
 
-(defn digits [n]
-  (map #(Integer/parseInt (str %)) (str n)))
+(defn power-digit-sum [exp]
+  (apply + (problem-008/to-digits (math/expt 2 exp))))
 
-(defn -main []
-  (println (apply + (digits (math/expt 2 1000)))))
+(deftest example
+  (is (= 26 (power-digit-sum 15))))
+
+(defn solve []
+  (power-digit-sum 1000))
