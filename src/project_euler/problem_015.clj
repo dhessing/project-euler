@@ -1,8 +1,5 @@
 (ns project-euler.problem-015
-  (:require [clojure.math.combinatorics :as combo]))
+  (:import (cern.jet.math.tdouble DoubleArithmetic)))
 
-(defn -main []
-  (->> (concat (repeat 20 :r)
-               (repeat 20 :d))
-       (combo/count-permutations)
-       (println)))
+(defn solve []
+  (long (DoubleArithmetic/binomial 40 20)))
