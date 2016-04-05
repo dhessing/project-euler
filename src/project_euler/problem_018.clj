@@ -1,4 +1,5 @@
 (ns project-euler.problem-018
+  (:use clojure.test)
   (:require [clojure.string :as str]))
 
 (def triangle-str
@@ -26,12 +27,24 @@
                str/triml))))
 
 (defn add-rows [a b]
-  (map + (fn [[x y] z] (max (+ x z) (+ y z))) (partition 2 1 a) b))
+  (map (fn [[x y] z] (max (+ x z) (+ y z))) (partition 2 1 a) b))
 
-(defn -main []
+(defn maximum-path-sum [triangle]
+  (->> triangle
+       (rseq)
+       (reduce add-rows)
+       (apply max)))
+
+(deftest test-add-rows
+  (is (= (add-rows [2 3] [1]) [4])))
+
+(deftest test-maximum-path-sum
+  (is (= 23 (maximum-path-sum [[3] [7 4] [2 4 6] [8 5 9 3]]))))
+
+(defn solve []
   (->> triangle-str
        (parse-triangle)
-       (reverse)
+       (rseq)
        (reduce add-rows)
        (apply max)))
 
