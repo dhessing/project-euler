@@ -26,25 +26,26 @@
                #(str/split % #"\s")
                str/triml))))
 
-(defn add-rows [a b]
-  (map (fn [[x y] z] (max (+ x z) (+ y z))) (partition 2 1 a) b))
+(defn add-max-child [[l r] parent]
+  (max (+ l parent) (+ r parent)))
+
+(defn add-max-children [child-row parent-row]
+  (map add-max-child (partition 2 1 child-row) parent-row))
 
 (defn maximum-path-sum [triangle]
   (->> triangle
-       (rseq)
-       (reduce add-rows)
-       (apply max)))
+       rseq
+       (reduce add-max-children)
+       first))
 
-(deftest test-add-rows
-  (is (= (add-rows [2 3] [1]) [4])))
+(deftest test-add-max-children
+  (is (= (add-max-children [2 3] [1]) [4])))
 
 (deftest test-maximum-path-sum
   (is (= 23 (maximum-path-sum [[3] [7 4] [2 4 6] [8 5 9 3]]))))
 
 (defn solve []
   (->> triangle-str
-       (parse-triangle)
-       (rseq)
-       (reduce add-rows)
-       (apply max)))
+       parse-triangle
+       maximum-path-sum))
 
