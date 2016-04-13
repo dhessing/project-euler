@@ -1,28 +1,26 @@
 (ns project-euler.problem-021
-  (require [project-euler.problem-012 :as problem-12]
-           [clojure.math.combinatorics :as combo])
   (:use clojure.test))
 
-(defn proper-divisors [primes n]
-  (->> primes
-       (problem-12/prime-factors n)
-       (combo/subsets)
-       (butlast)
-       (map (partial apply *))
+(defn factors [n]
+  (->> (for [x (range 1 (inc (Math/sqrt n)))
+             :when (zero? (rem n x))]
+         [x (/ n x)])
+       (reduce concat)
        (set)))
 
-(defn amicable-number? [primes n]
-  (let [sum-1 (apply + (proper-divisors primes n))
-        sum-2 (apply + (proper-divisors primes sum-1))]
-    (and (= n sum-2) (not= n sum-1))))
+(defn proper-divisors [n]
+  (disj (factors n) n))
 
-(deftest test-proper-divisors
-  (is (= #{1 2 4 5 10 11 20 22 44 55 110} (proper-divisors (problem-12/prime-seq) 220))))
+(defn amicable-number? [a]
+  (let [d (fn [n] (apply + (proper-divisors n)))
+        b (d a)]
+    (and (= a (d b)) (not= a b))))
+
+(deftest test-factors
+  (is (= #{1 2 4 5 10 11 20 22 44 55 110 220} (factors 220))))
 
 (deftest test-amicable-number?
-  (is (true? (amicable-number? (problem-12/prime-seq) 220))))
+  (is (true? (amicable-number? 220))))
 
 (defn solve []
-  (let [numbers (range 1 (inc 10001))
-        primes (problem-12/prime-seq)]
-    (apply + (filter (partial amicable-number? primes) numbers))))
+  (apply + (filter amicable-number? (range 1 10001))))
