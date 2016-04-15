@@ -3,11 +3,9 @@
   (:use clojure.test))
 
 (defn load-names []
-  (->
-    (slurp "resources/p022_names.txt")
-    (s/replace #"\"" "")
-    (s/split #",")
-    (sort)))
+  (-> (slurp "resources/p022_names.txt")
+      (s/replace #"\"" "")
+      (s/split #",")))
 
 (defn alphabetical-value [word]
   (reduce + (map #(- (int %) 64) word)))
@@ -17,8 +15,7 @@
 
 (deftest test-load-names
   (let [names (load-names)]
-    (is (contains? (set names) "MARY"))
-    (is (not= "MARY" (first names)))))
+    (is (= (first names) "MARY"))))
 
 (deftest test-alphabetical-value
   (is (= 53 (alphabetical-value "COLIN"))))
@@ -28,5 +25,6 @@
 
 (defn solve []
   (->> (load-names)
+       (sort)
        (map name-score (iterate inc 1))
        (reduce +)))
