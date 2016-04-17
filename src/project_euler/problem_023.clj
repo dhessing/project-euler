@@ -5,19 +5,26 @@
 (defn abundant-number? [n]
   (< n (reduce + (p21/proper-divisors n))))
 
-(defn abundant-numbers-seq [n]
-  (filter abundant-number? (range 1 (inc n))))
+(defn sum-of-two-abundant-numbers-checker []
+  (let [abundant-numbers (into [] (filter abundant-number? (range 1 28124)))
+        abundant-number-set (set abundant-numbers)]
+    (fn [n]
+      (let [half (/ n 2)]
+        (some true?
+              (for [a abundant-numbers
+                    :while (<= a half)
+                    :let [b (- n a)]
+                    :when (contains? abundant-number-set b)]
+                true))))))
 
-(defn sum-of-two-abundant-numbers?' [abundant-numbers abundant-number-set n]
-  (some #(contains? abundant-number-set %) (for [x abundant-numbers] (- n x))))
+(deftest test-abundant-number?
+  (is (true? (abundant-number? 12))))
 
 (deftest test-sum-of-two-abundant-numbers?
-  (let [abundant-numbers (abundant-numbers-seq 28124)
-        abundant-number-set (set abundant-numbers)]
-    (is (true? (sum-of-two-abundant-numbers?' abundant-numbers abundant-number-set 24)))
-    (is (true? (sum-of-two-abundant-numbers?' abundant-numbers abundant-number-set 28124)))))
+  (let [sum-of-two-abundant-numbers? (sum-of-two-abundant-numbers-checker)]
+    (is (true? (sum-of-two-abundant-numbers? 24)))
+    (is (true? (sum-of-two-abundant-numbers? 28124)))))
 
 (defn solve []
-  (let [abundant-numbers (abundant-numbers-seq 28124)
-        sum-of-two-abundant-numbers? (partial sum-of-two-abundant-numbers?' abundant-numbers (set abundant-numbers))]
+  (let [sum-of-two-abundant-numbers? (sum-of-two-abundant-numbers-checker)]
     (reduce + (remove sum-of-two-abundant-numbers? (range 1 28124)))))
