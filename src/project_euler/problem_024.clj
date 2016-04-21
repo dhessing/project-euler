@@ -9,12 +9,11 @@
 ;;; For fun I wrote my own permutations function
 
 (defn permutations [items]
-  (lazy-seq
-    (if (= 1 (count items))
-     (list items)
-     (for [item items
-           p (permutations (filter #(not= % item) items))]
-       (cons item p)))))
+  (if (= 1 (count items))
+    (list items)
+    (for [item items
+          p (permutations (filter #(not= % item) items))]
+      (cons item p))))
 
 (deftest test-lexicographic-permutations
   (is (= [[0]] (permutations (range 1))))
