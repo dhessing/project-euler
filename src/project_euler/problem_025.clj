@@ -2,12 +2,16 @@
   (:require [clojure.math.numeric-tower :as math])
   (:use clojure.test))
 
+(defn fib []
+  ((fn step [a b]
+     (lazy-seq (cons a (step b (+ a b)))))
+    1N 1N))
+
 (defn index-of-fib-with-digits [digits]
-  (let [max (math/expt 10 (dec digits))]
-    (loop [a 1 b 1 idx 1]
-      (if (<= max a)
-        idx
-        (recur b (+' a b) (inc idx))))))
+  (let [limit (math/expt 10 (dec digits))]
+    (->> (fib)
+         (keep-indexed (fn [idx n] (when (<= limit n) (inc idx))))
+         (first))))
 
 (deftest test-fib
   (is (= (index-of-fib-with-digits 3) 12)))
