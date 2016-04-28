@@ -1,6 +1,6 @@
 ;;;; Largest product in a grid
 
-(ns project-euler.problem-011
+(ns project-euler.level-01.problem-011
   (:use clojure.test))
 
 (def grid [[ 8  2 22 97 38 15  0 40  0 75  4  5  7 78 52 12 50 77 91  8]

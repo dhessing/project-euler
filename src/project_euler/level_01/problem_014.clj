@@ -1,7 +1,7 @@
 ;;;; Longest Collatz sequence
 ;;; https://projecteuler.net/problem=14
 
-(ns project-euler.problem-014
+(ns project-euler.level-01.problem-014
   (:use clojure.test))
 
 (defn collatz-step [n]

@@ -1,4 +1,4 @@
-(ns project-euler.problem-024
+(ns project-euler.level-01.problem-024
   (:require [clojure.math.combinatorics :as c])
   (:use clojure.test))
 

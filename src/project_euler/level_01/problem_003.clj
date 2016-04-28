@@ -1,6 +1,6 @@
 ;;;; Largest prime factor
 
-(ns project-euler.problem-003
+(ns project-euler.level-01.problem-003
   (:use clojure.test))
 
 (defn lowest-divisor [n]

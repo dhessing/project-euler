@@ -1,4 +1,4 @@
-(ns project-euler.problem_019
+(ns project-euler.level-01.problem_019
   (:require [clj-time.core :as t]
             [clj-time.predicates :as pr]
             [clj-time.periodic :as p])

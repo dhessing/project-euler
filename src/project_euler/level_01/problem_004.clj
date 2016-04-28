@@ -1,6 +1,6 @@
 ;;;; Largest palindrome product
 
-(ns project-euler.problem-004
+(ns project-euler.level-01.problem-004
   (:use clojure.test))
 
 (defn palindrome? [n]

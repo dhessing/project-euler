@@ -1,6 +1,6 @@
 ;;;; Smallest multiple
 
-(ns project-euler.problem-005
+(ns project-euler.level-01.problem-005
   (:use clojure.test))
 
 (defn divisable-by-all? [upper n]

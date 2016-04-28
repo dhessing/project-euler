@@ -1,6 +1,6 @@
 ;;;; Special Pythagorean triplet
 
-(ns project-euler.problem-009
+(ns project-euler.level-01.problem-009
   (:require [clojure.math.numeric-tower :as math])
   (:use clojure.test))
 

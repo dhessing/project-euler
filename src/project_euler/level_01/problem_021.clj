@@ -1,4 +1,4 @@
-(ns project-euler.problem-021
+(ns project-euler.level-01.problem-021
   (:use clojure.test))
 
 (defn factors [n]

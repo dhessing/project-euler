@@ -1,6 +1,6 @@
 ;;;; Multiples of 3 and 5
 
-(ns project-euler.problem-001
+(ns project-euler.level-01.problem-001
   (:use clojure.test))
 
 (defn problem-1 [limit]

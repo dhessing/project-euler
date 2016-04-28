@@ -1,6 +1,6 @@
 ;;;; Even Fibonacci numbers
 
-(ns project-euler.problem-002
+(ns project-euler.level-01.problem-002
   (:use clojure.test))
 
 (defn fib []

@@ -1,5 +1,5 @@
-(ns project-euler.problem-020
-  (:require [project-euler.problem-008 :as problem-008])
+(ns project-euler.level-01.problem-020
+  (:require [project-euler.level-01.problem-008 :as problem-008])
   (:use clojure.test))
 
 (defn factorial [n]

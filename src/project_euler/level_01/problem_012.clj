@@ -1,6 +1,6 @@
 ;;;; Highly divisible triangular number
 
-(ns project-euler.problem-012
+(ns project-euler.level-01.problem-012
   (:require [clojure.math.numeric-tower :as math])
   (:use clojure.test))
 

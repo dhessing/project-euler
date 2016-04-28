@@ -1,6 +1,6 @@
 ;;;; 10001st prime
 
-(ns project-euler.problem-007
+(ns project-euler.level-01.problem-007
   (:use clojure.test))
 
 (defn is-prime? [n primes]

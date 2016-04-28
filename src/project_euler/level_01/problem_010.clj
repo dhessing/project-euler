@@ -1,11 +1,11 @@
 ;;;; Summation of primes
 
-(ns project-euler.problem-010
+(ns project-euler.level-01.problem-010
   (:use clojure.test)
-  (:require project-euler.problem-007))
+  (:require project-euler.level-01.problem-007))
 
 (defn sum-of-primes [n]
-  (->> (project-euler.problem-007/prime-seq)
+  (->> (project-euler.level-01.problem-007/prime-seq)
        (take-while (partial > n))
        (apply +)))
 

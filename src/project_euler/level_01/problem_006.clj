@@ -1,6 +1,6 @@
 ;;;; Sum square difference
 
-(ns project-euler.problem-006
+(ns project-euler.level-01.problem-006
   (:use clojure.test))
 
 (defn sum-square-difference [numbers]

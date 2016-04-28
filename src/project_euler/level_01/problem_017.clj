@@ -1,4 +1,4 @@
-(ns project-euler.problem-017
+(ns project-euler.level-01.problem-017
   (:use clojure.test))
 
 (defn number->english [n]

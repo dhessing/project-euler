@@ -1,5 +1,5 @@
-(ns project-euler.problem-023
-  (:require [project-euler.problem-021 :as p21])
+(ns project-euler.level-01.problem-023
+  (:require [project-euler.level-01.problem-021 :as p21])
   (:use clojure.test))
 
 (defn abundant-number? [n]

@@ -1,6 +1,6 @@
-(ns project-euler.problem-016
+(ns project-euler.level-01.problem-016
   (:use clojure.test)
-  (:require [project-euler.problem-008 :as problem-008]
+  (:require [project-euler.level-01.problem-008 :as problem-008]
             [clojure.math.numeric-tower :as math]))
 
 (defn power-digit-sum [exp]

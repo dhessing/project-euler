@@ -1,4 +1,4 @@
-(ns project-euler.problem-025
+(ns project-euler.level-01.problem-025
   (:require [clojure.math.numeric-tower :as math])
   (:use clojure.test))
 

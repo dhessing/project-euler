@@ -1,4 +1,4 @@
-(ns project-euler.problem-018
+(ns project-euler.level-01.problem-018
   (:use clojure.test)
   (:require [clojure.string :as str]))
 
