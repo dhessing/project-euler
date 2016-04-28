@@ -16,9 +16,9 @@
   (is (= (number-of-consecutive-primes (make-function -79 1601)) 80)))
 
 (defn max-quadratic-primes [n]
-  (let [xs (range (- n) n)
-        primes (filter prime? xs)]
-    (->> (for [a xs
+  (let [numbers (range (- n) n)
+        primes (filter prime? numbers)]
+    (->> (for [a numbers
                b primes
                :let [ncp (number-of-consecutive-primes (make-function a b))]]
            [[a b] ncp])
