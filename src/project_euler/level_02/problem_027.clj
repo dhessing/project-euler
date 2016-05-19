@@ -8,22 +8,20 @@
 (defn prime? [n]
   (.isProbablePrime (biginteger n) 10))
 
-(defn number-of-consecutive-primes [f]
-  (count (take-while prime? (map f (range)))))
+(defn count-consecutive-primes [coll]
+  (count (take-while prime? coll)))
 
-(deftest test-number-of-consecutive-primes
-  (is (= (number-of-consecutive-primes (make-function 1 41)) 40))
-  (is (= (number-of-consecutive-primes (make-function -79 1601)) 80)))
+(deftest test-count-consecutive-primes
+  (is (= (count-consecutive-primes (map (make-function 1 41) (range))) 40))
+  (is (= (count-consecutive-primes (map (make-function -79 1601) (range))) 80)))
 
-(defn max-quadratic-primes [n]
+(defn consecutive-primes [n]
   (let [numbers (range (- n) n)
         primes (filter prime? numbers)]
-    (->> (for [a numbers
-               b primes
-               :let [ncp (number-of-consecutive-primes (make-function a b))]]
-           [[a b] ncp])
-         (apply max-key second)
-         (first))))
+    (for [a numbers
+          b primes
+          :let [values (map (make-function a b) (range))]]
+      [[a b] (count-consecutive-primes values)])))
 
 (defn solve []
-  (apply * (max-quadratic-primes 1000)))
+  (apply * (first (apply max-key second (consecutive-primes 1000)))))
