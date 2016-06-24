@@ -2,7 +2,7 @@
   (:require [clojure.math.combinatorics :as combo])
   (:use clojure.test))
 
-(defn to-digits [n]
+(defn int-to-digits [n]
   (map #(Integer/parseInt (str %)) (str n)))
 
 (defn digits-to-int [coll]
@@ -11,27 +11,33 @@
 (defn permutations [items length]
   (mapcat combo/permutations (combo/combinations items length)))
 
-(defn pandigital-products [length-a length-b]
+(defn gen-multipliers []
+  (let [digits (range 1 10)]
+    (for [[length-a length-b] [[1 4] [2 3]]
+          digits-a (permutations digits length-a)
+          digits-b (permutations (remove (set digits-a) digits) length-b)]
+      [digits-a digits-b])))
+
+(defn pandigital-products []
   (let [digits (set (range 1 10))]
-    (for [digits-a (permutations (range 1 10) length-a)
-          digits-b (permutations (remove (set digits-a) digits) length-b)
+    (for [[digits-a digits-b] (gen-multipliers)
           :let [a (digits-to-int digits-a)
                 b (digits-to-int digits-b)
-                product (* a b)
-                digits-total (concat digits-a digits-b (to-digits product))]
+                c (* a b)
+                digits-total (concat digits-a digits-b (int-to-digits c))]
           :when (and
                   (= (set digits-total) digits)
                   (= (count digits-total) 9))]
-      product)))
+      c)))
 
 (deftest test-to-digits
-  (is (= (to-digits 123456789) [1 2 3 4 5 6 7 8 9])))
+  (is (= (int-to-digits 123456789) [1 2 3 4 5 6 7 8 9])))
 
 (deftest test-digits-to-int
   (is (= (digits-to-int [1 2 3 4 5 6 7 8 9]) 123456789)))
 
 (deftest test-pandigital-products
-  (is (= (#{7254} (pandigital-products 2 3)))))
+  (is (= (#{7254} (pandigital-products)))))
 
 (defn solve []
-  (reduce + (set (mapcat #(pandigital-products %1 %2) [1 2] [4 3]))))
+  (reduce + (set (pandigital-products))))
