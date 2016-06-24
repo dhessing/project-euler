@@ -21,3 +21,6 @@
   (is (= (split 4) 3))
   (is (= (split 5) 4))
   (is (= (split 6) 5)))
+
+(defn solve []
+  (split 200))
