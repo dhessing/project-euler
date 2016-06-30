@@ -1,7 +1,9 @@
 # project-euler
 
 My solutions for the Project Euler questions.
-For documentation, see: <http://www.dzjon.nl/category/project-euler/>
+For code explanations see: <http://www.dzjon.nl/category/project-euler/>
+
+![circleci badge](https://circleci.com/gh/dhessing/project-euler/tree/master.svg?style=shield&circle-token=dac9945df969d5e11be450661e7305c2e18ba7e8)
 
 
 ## Usage
