@@ -20,8 +20,8 @@
         :when (try (and (not= (rem a 10) 0)
                         (not= digits-a digits-a-cancelled)
                         (= (/ a b) (/ c d)))
-                   (catch Exception _ false))]
-    (/ a b)))
+                   (catch ArithmeticException _ false))]
+    [a b]))
 
 (defn solve []
-  (denominator (reduce * (digit-cancelling-fractions))))
+  (denominator (reduce * (map (fn [[a b]] (/ a b)) (digit-cancelling-fractions)))))
