@@ -1,4 +1,4 @@
-(ns util.palindrome
+(ns lib.palindrome
   (:use clojure.test))
 
 (defn palindrome? [n]

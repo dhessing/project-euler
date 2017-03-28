@@ -1,5 +1,5 @@
 (ns project-euler.level-02.problem-034
-  (:require [util.digits :as digits]
+  (:require [lib.digits :as digits]
             [clojure.math.numeric-tower :as math])
   (:use clojure.test))
 

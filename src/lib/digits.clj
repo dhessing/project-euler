@@ -1,4 +1,4 @@
-(ns util.digits
+(ns lib.digits
   (:use [clojure.test]))
 
 (defn from-int [n]

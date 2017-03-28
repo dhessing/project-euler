@@ -1,7 +1,7 @@
 (ns project-euler.level-02.problem-035
   (:use [clojure.test])
-  (:require [util.primes :as primes]
-            [util.digits :as digits]))
+  (:require [lib.primes :as primes]
+            [lib.digits :as digits]))
 
 (defn rotations [coll]
   (let [length (count coll)]

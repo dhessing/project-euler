@@ -1,4 +1,4 @@
-(ns util.primes
+(ns lib.primes
   (:use clojure.test))
 
 (defn is-prime? [n primes]

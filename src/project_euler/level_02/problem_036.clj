@@ -1,5 +1,5 @@
 (ns project-euler.level-02.problem-036
-  (:require [util.palindrome :as palindrome])
+  (:require [lib.palindrome :as palindrome])
   (:use [clojure.test]))
 
 (defn solve []
