@@ -3,20 +3,24 @@
             [clojure.math.numeric-tower :as math])
   (:use clojure.test))
 
-(def factorial (memoize (fn [n] (reduce *' (range 1 (inc n))))))
+(def factorial (memoize (fn [n] (reduce * (range 1 (inc n))))))
+
+(deftest test-factorial
+  (is (= (factorial 5) (* 1 2 3 4 5))))
 
 (defn upper-bound []
-  (->> (iterate inc 2)
-       (filter #(>= (math/expt 10 %) (* % (factorial 9))))
-       (first)))
+  (->> (iterate inc 1)
+       (filter #(> (math/expt 10 %) (* % (factorial 9))))
+       (first)
+       (* (factorial 9))))
 
 (defn digit-factorial? [int]
   (= int (reduce + (map factorial (digits/from-int int)))))
 
-(defn solve []
-  (reduce + (for [x (range 10 (math/expt 10 (upper-bound)))
-                  :when (digit-factorial? x)]
-              x)))
-
 (deftest test-digit-factorial
   (is (true? (digit-factorial? 145))))
+
+(defn solve []
+  (reduce + (for [x (range (upper-bound))
+                  :when (digit-factorial? x)]
+              x)))
