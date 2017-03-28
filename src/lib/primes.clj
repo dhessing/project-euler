@@ -2,13 +2,15 @@
   (:use clojure.test))
 
 (defn is-prime? [n primes]
-  (let [trial-divisors (take-while (fn [p] (>= (Math/sqrt n) p)) primes)
-        divisible? (fn [n divisor] (zero? (mod n divisor)))]
-    (not-any? #(divisible? n %) trial-divisors)))
+  (if (= n 1)
+    false
+    (let [trial-divisors (take-while (fn [p] (>= (Math/sqrt n) p)) primes)
+          divisible? (fn [n divisor] (zero? (mod n divisor)))]
+      (not-any? #(divisible? n %) trial-divisors))))
 
 (deftest test-is-prime?
-         (is (false? (is-prime? 4 [2 3])))
-         (is (true? (is-prime? 5 [2 3]))))
+  (is (false? (is-prime? 4 [2 3])))
+  (is (true? (is-prime? 5 [2 3]))))
 
 (defn prime-seq []
   (lazy-seq
